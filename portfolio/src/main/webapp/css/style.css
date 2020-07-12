@@ -1,9 +1,147 @@
-#content {
-  margin-left: auto;
-  margin-right: auto;
-  width: 650px;
+/***************************************
+    Global Settings and Styles
+ ***************************************/
+body {
+    background-color: white;
+    background-image: url(../image/bg.jpg);
+    background-position: left top;
+    background-repeat: repeat;
+    -webkit-font-smoothing: antialiased;
 }
 
-#greeting-container {
-  margin-top: 20px;
+a {
+    color: #4f4d47;
+    text-decoration: none;
+    -webkit-transition: all .35s; 
+    transition: all .35s;
 }
+
+a:hover {
+    color: #dadada; 
+    text-decoration: underline;
+}
+
+.wrapper {
+  background: white;
+  margin: 70px auto;
+  width: 90%;
+  max-width: 1250px;
+  overflow: hidden;
+  border: 6px solid #eaeaea;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+img {
+    max-width: 100%;    
+    height: auto;
+}
+
+p {
+    font-size: 1.1em;
+    font-family: 'Oxygen', sans-serif;  
+    color: #333;
+    line-height: 1.7em;
+    margin-top: 14px;
+    margin-bottom: 20px;    
+}
+
+
+h1 {
+    font-family: 'Qwigley', Helvetica, Sans-serif;     
+    font-size: 2.2em;
+    font-weight: 600;
+    color: #4f4d47;
+    margin-top: 50px;
+    margin-bottom: 0;
+    text-align: center;
+    line-height: 1.7em;
+}
+
+h2 {    
+    font-family: 'Oxygen', sans-serif;  
+    font-size: 1em;
+    font-weight: 400;
+    color: #898989;
+    margin-top: 40px;
+    margin-bottom: 34px;
+    text-align: center;
+    line-height: 1.7em;
+    padding-left: 150px;
+    padding-right: 150px;
+}
+
+h3 {
+    font-family: 'Oxygen', sans-serif;  
+    font-size: 1em;
+    font-weight: 400;
+    color: #898989;
+    margin-top: 16px;
+    margin-bottom: 14px;
+    text-align: left;
+    line-height: 1.7em;
+}
+
+h4 {
+    font-family: 'Oxygen', sans-serif;  
+    font-size: 1em;
+    font-weight: 400;
+    color: #898989;
+    margin-top: 16px;
+    margin-bottom: 14px;
+    text-align: left;
+    line-height: 1.7em;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.clickable:hover {
+    cursor: pointer;
+}
+
+.available {
+    border: 3px solid #4caf50 !important;
+}
+
+.available:hover {
+    cursor: pointer;
+}
+
+.chosen {
+    border: 3px solid #673ab7 !important;
+}
+
+.chosen:hover {
+    cursor: pointer;
+}
+
+.flex {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/***************************************
+               Colors
+ ***************************************/
+.bg-black {
+    background-color: #000000;
+}
+
+.bg-grey {
+    background-color: #D8D8D8;
+}
+
+.bg-white {
+    background-color: #FBFBFB;
+}
+
+.color-white {
+    color: #FBFBFB;
+}
+
