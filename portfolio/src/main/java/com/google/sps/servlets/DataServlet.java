@@ -42,16 +42,6 @@ public class DataServlet extends HttpServlet {
         response.getWriter().println(json);
     }
 
-    /**
-    * Converts a UserComment list instance into a JSON string using the Gson library. Note: We first added
-    * the Gson library dependency to pom.xml.
-    */
-    private String convertToJsonUsingGson(ArrayList<UserComment> comments) {
-        Gson gson = new Gson();
-        String json = gson.toJson(comments);
-        return json;
-    }
-
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         // Receive form data
@@ -64,7 +54,29 @@ public class DataServlet extends HttpServlet {
         commentList.add(newComment);
 
         // Redirect back to the HTML page.
-        response.sendRedirect("/index.html");
+        response.sendRedirect("/index.html#comment");
+    }
+
+    /**
+    * Converts a UserComment list instance into a JSON string using the Gson library. Note: We first added
+    * the Gson library dependency to pom.xml.
+    */
+    private String convertToJsonUsingGson(ArrayList<UserComment> comments) {
+        Gson gson = new Gson();
+        String json = gson.toJson(comments);
+        return json;
+    }
+
+    /**
+    * @return the request parameter, or the default value if the parameter
+    *         was not specified by the client
+    */
+    private String getParameter(HttpServletRequest request, String name, String defaultValue) {
+        String value = request.getParameter(name);
+        if (value == null) {
+            return defaultValue;
+        }
+        return value;
     }
 
 }
