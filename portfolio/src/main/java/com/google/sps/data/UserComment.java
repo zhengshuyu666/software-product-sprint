@@ -17,33 +17,28 @@ package com.google.sps.data;
 import java.util.Date;
 
 /** Class containing server statistics. */
-public final class ServerStats {
+public final class UserComment {
 
-  private final Date startTime;
+  private final String userName;
   private final Date currentTime;
-  private final long maxMemory;
-  private final long usedMemory;
+  private final String commentText;
 
-  public ServerStats(Date startTime, Date currentTime, long maxMemory, long usedMemory) {
-    this.startTime = startTime;
+  public UserComment(String userName, Date currentTime, String commentText) {
+    this.userName = userName;
     this.currentTime = currentTime;
-    this.maxMemory = maxMemory;
-    this.usedMemory = usedMemory;
+    this.commentText = commentText;
   }
 
-  public Date getStartTime() {
-    return startTime;
+  public String getUserName() {
+    return userName;
   }
 
   public Date getCurrentTime() {
     return currentTime;
   }
 
-  public long getMaxMemory() {
-    return maxMemory;
+  public String getCommentText() {
+    return commentText;
   }
 
-  public long getUsedMemory() {
-    return usedMemory;
-  }
 }

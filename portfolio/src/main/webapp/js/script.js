@@ -47,11 +47,11 @@ function getComments() {
         var comment_content = '';
         for (var i = 0; i < comments.length; i++) {
             comment_content = comment_content + comment_item_code;
-            comment_content = comment_content + comments[i].name;
+            comment_content = comment_content + comments[i].userName;
             comment_content = comment_content + comment_name_code;
-            comment_content = comment_content + comments[i].time;
+            comment_content = comment_content + comments[i].currentTime;
             comment_content = comment_content + comment_time_code;
-            comment_content = comment_content + comments[i].text;
+            comment_content = comment_content + comments[i].commentText;
             comment_content = comment_content + comment_text_code;
         }
         console.log(comment_content);

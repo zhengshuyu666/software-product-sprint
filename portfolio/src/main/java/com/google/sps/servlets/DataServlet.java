@@ -16,28 +16,33 @@ package com.google.sps.servlets;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.ArrayList;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
-import com.google.sps.data.ServerStats;
+import com.google.sps.data.UserComment;
 
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
-    private final Date startTime = new Date();
+    private final ArrayList<UserComment> commentList = new ArrayList<UserComment>(); 
+    
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Date currentTime = new Date();
-        long maxMemory = Runtime.getRuntime().maxMemory();
-        long usedMemory = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
+        String userName = "Name";
+        String commentText = "Text Text Text Text";
+        
+        // Add comment to comment list
+        UserComment newComment = new UserComment(userName, currentTime, commentText);
+        commentList.add(newComment);
 
-        // Convert the server stats to JSON
-        ServerStats serverStats = new ServerStats(startTime, currentTime, maxMemory, usedMemory);
-        String json = convertToJsonUsingGson(serverStats);
+        // Convert the comment list to JSON
+        String json = convertToJsonUsingGson(commentList);
 
         // Send the JSON as the response
         response.setContentType("application/json;");
@@ -45,12 +50,12 @@ public class DataServlet extends HttpServlet {
     }
 
     /**
-    * Converts a ServerStats instance into a JSON string using the Gson library. Note: We first added
+    * Converts a UserComment list instance into a JSON string using the Gson library. Note: We first added
     * the Gson library dependency to pom.xml.
     */
-    private String convertToJsonUsingGson(ServerStats serverStats) {
+    private String convertToJsonUsingGson(ArrayList<UserComment> comments) {
         Gson gson = new Gson();
-        String json = gson.toJson(serverStats);
+        String json = gson.toJson(comments);
         return json;
   }
 }
