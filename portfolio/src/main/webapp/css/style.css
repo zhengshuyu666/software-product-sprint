@@ -126,6 +126,27 @@ h4 {
     align-items: center;
 }
 
+.heading-inner {
+    font-family: 'Qwigley', Helvetica, Sans-serif;     
+    font-size: 2.2em;
+    font-weight: 600;
+    color: #4f4d47;
+    margin-top: 16px;
+    margin-bottom: 0;
+    text-align: center;
+    line-height: 1.7em;
+}
+
+
+.hr {
+    border-bottom: 2px solid #4f4d47;
+    display: block;
+    width: 14px;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+
 /***************************************
                Colors
  ***************************************/
@@ -143,5 +164,98 @@ h4 {
 
 .color-white {
     color: #FBFBFB;
+}
+
+
+/***************************************
+          Header and Navigation
+ ***************************************/
+
+.brand {
+    display: inherit;
+    margin: 0 0 20px 0;
+    padding: 30px 0 14px;
+    text-align: center;
+    font-family: 'Qwigley', Helvetica, Sans-serif;
+    font-size: 4.1em;
+    line-height: normal;
+    color: #4f4d47;
+    text-transform: capitalize;
+}
+
+.navbar-nav {
+    text-transform: capitalize;
+    font-weight: 400;
+}
+
+.navbar {
+    border-radius: 0; 
+    min-height: 0;
+}
+
+.navbar-default {
+    border: none;
+    background: #fff;
+    margin-top: 7px;
+    padding-bottom: 12px;
+}
+    
+.navbar-default .navbar-nav>li>a {
+    color: #898989;
+    font-family: 'Oxygen', sans-serif;
+    font-size: 1.1em;
+    border-top: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+    color: #999999;
+}
+
+.nav>li>a {
+    padding: 20px;
+}
+
+.navbar-nav>li>a {
+    line-height: normal;
+}
+
+.navbar-nav {
+    display: table;
+    float: none;
+    margin: 0 auto;
+    table-layout: fixed;
+}
+
+.navbar-default .navbar-nav > .active > a, 
+.navbar-default .navbar-nav > .active > a:hover, 
+.navbar-default .navbar-nav > .active > a:focus {
+    color: #4f4d47;
+    background-color: transparent;
+}
+
+
+/***************************************
+              About Session
+ ***************************************/
+.margin-about {
+    margin-top: 40px;
+}
+
+.box-about {
+    color: #898989;
+    font-family: 'Oxygen', sans-serif;
+    font-size: 1.1em;
+    border-top: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+    margin-top: 68px;
+    margin-right: 8%;
+}
+
+.photo-about {
+    margin-top: 59px;
+    margin-bottom: 30px;
+    margin-left: 5px;
+    border-radius: 20px;
 }
 
