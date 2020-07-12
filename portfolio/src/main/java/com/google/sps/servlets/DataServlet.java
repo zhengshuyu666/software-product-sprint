@@ -33,13 +33,6 @@ public class DataServlet extends HttpServlet {
     
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        Date currentTime = new Date();
-        String userName = "Name";
-        String commentText = "Text Text Text Text";
-        
-        // Add comment to comment list
-        UserComment newComment = new UserComment(userName, currentTime, commentText);
-        commentList.add(newComment);
 
         // Convert the comment list to JSON
         String json = convertToJsonUsingGson(commentList);
@@ -57,5 +50,21 @@ public class DataServlet extends HttpServlet {
         Gson gson = new Gson();
         String json = gson.toJson(comments);
         return json;
-  }
+    }
+
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        // Receive form data
+        String userName = getParameter(request, "form-name", "");
+        Date currentTime = new Date();
+        String commentText = getParameter(request, "form-comment", "");
+
+        // Add comment to comment list
+        UserComment newComment = new UserComment(userName, currentTime, commentText);
+        commentList.add(newComment);
+
+        // Redirect back to the HTML page.
+        response.sendRedirect("/index.html");
+    }
+
 }
