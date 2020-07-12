@@ -57,5 +57,12 @@ function getComments() {
         console.log(comment_content);
         document.getElementById('comment-list').innerHTML = comment_content;
   });
-
 }
+
+/**
+ * Load comment message once the document is ready
+ */
+$(document).ready(function(){ 
+    getComments();
+});
+

@@ -530,6 +530,33 @@ figure.effect-moses:hover img {
     margin-block-left: 0em !important;
 }
 
+.form-label {
+    color: #4f4d47;
+    font-family: 'Oxygen', sans-serif;
+    font-size: 1.1em;
+}
+
+.form-submit {
+    width: 100%;
+    text-align: center;
+
+}
+
+.margin-comment .form-control {
+    margin-bottom: 20px !important;
+}
+
+.btn-submit {
+    border-color: #898989;
+    color: #4f4d47;
+    background-color: #fff;
+}
+
+.btn-submit:hover {
+    background-color: #898989;
+    color: #fff;
+}
+
 /***************************************
                 Footer
  ***************************************/
