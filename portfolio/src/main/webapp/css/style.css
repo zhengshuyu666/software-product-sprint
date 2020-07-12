@@ -175,6 +175,10 @@ h4 {
     color: #FBFBFB;
 }
 
+.color-grey {
+    color: #D8D8D8;
+}
+
 
 /***************************************
           Header and Navigation
@@ -483,6 +487,49 @@ figure.effect-moses:hover img {
 
 
 /***************************************
+                Comment
+ ***************************************/
+.margin-comment {
+    margin-top: 100px;
+}
+.comment-container {
+    color: #898989;
+    font-family: 'Oxygen', sans-serif;
+    font-size: 1.1em;
+    margin-top: 54px;
+    margin-bottom: 72px;
+}
+
+.comment-list{
+    column-count: 3;
+    column-gap: 2em;
+}
+
+.comment-item {
+    margin-bottom: 3em;
+    break-inside: avoid;
+    position: relative;
+}
+
+.comment-name {
+    margin-left: 10px;
+    margin-block-start: 0em !important;
+    margin-block-end: 0.5em !important;
+    font-weight: 600;
+}
+
+.comment-time {
+    margin-left: 10px;
+    margin-block-start: 0em !important;
+    margin-block-end: 0em !important;
+    color: #898989;
+}
+
+.comment-text {
+    margin-block-left: 0em !important;
+}
+
+/***************************************
                 Footer
  ***************************************/
 .footer {
@@ -505,16 +552,3 @@ figure.effect-moses:hover img {
 }
 
 
-/***************************************
-                Comment
- ***************************************/
-.comment-container {
-    color: #898989;
-    font-family: 'Oxygen', sans-serif;
-    font-size: 1.1em;
-    border-top: 1px solid #dddddd;
-    border-bottom: 1px solid #dddddd;
-    margin-top: 54px;
-    margin-bottom: 72px;
-    text-align: center;
-}

@@ -12,19 +12,50 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-let 
 
 /**
- * Adds a hello message to the page.
+ * Comment Style Code 
  */
-function getHello() {
+var comment_item_code = '\
+<div class="comment-item">\
+    <div class="row">\
+        <div class="pull-left">\
+            <span class="fa-stack fa-2x">\
+                <i class="fa fa-circle fa-stack-2x color-grey"></i>\
+                <i class="fa fa-user fa-stack-1x fa-inverse"></i>\
+            </span> \
+        </div>\
+        <div class="pull-left">\
+            <p class="comment-name">'
+var comment_name_code = '</p>\
+            <p class="comment-time">'
+var comment_time_code = '</p>\
+        </div>\
+    </div>\
+    <p class="comment-text">'
+var comment_text_code = '</p></div>'
+
+
+/**
+ * Adds comment message to the page.
+ */
+function getComments() {
+    console.log("getComments");
     fetch('/data')
     .then(response => response.json())
-    .then((data) => {
-        console.log("startTime: ", data.startTime);
-        console.log("currentTime: ", data.currentTime);
-        console.log("maxMemory: ", data.maxMemory);
-        console.log("usedMemory: ", data.usedMemory);
-        document.getElementById('comment-list').innerText = data.startTime;
+    .then((comments) => {
+        var comment_content = '';
+        for (var i = 0; i < comments.length; i++) {
+            comment_content = comment_content + comment_item_code;
+            comment_content = comment_content + comments[i].name;
+            comment_content = comment_content + comment_name_code;
+            comment_content = comment_content + comments[i].time;
+            comment_content = comment_content + comment_time_code;
+            comment_content = comment_content + comments[i].text;
+            comment_content = comment_content + comment_text_code;
+        }
+        console.log(comment_content);
+        document.getElementById('comment-list').innerHTML = comment_content;
   });
+
 }
