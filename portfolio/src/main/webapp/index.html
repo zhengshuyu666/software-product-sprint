@@ -12,6 +12,9 @@
     <!-- Fonts -->
     <link type="text/css" rel="stylesheet" href="css/fonts.css">
 
+    <!-- Font awesome -->
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+
     <!-- Main CSS -->
     <link type="text/css" rel="stylesheet" href="css/style.css">
 
@@ -31,8 +34,8 @@
                 <li class="active"><a href="#">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#publication">Publications</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#hobbies">Hobbies</a></li>
+                <li><a href="#project">Projects</a></li>
+                <li><a href="#hobby">Hobbies</a></li>
               </ul>
           </div>
           <!-- /navbar-collapse -->
@@ -40,21 +43,21 @@
         <!-- End Navigation -->
 
         <!-- Start Session: About -->
-         <div class="margin-about" id="about">
+        <div class="margin-about" id="about">
           <!-- Start left column -->
-          <div class="box-about col-md-4 col-xs-offset-1">
+          <div class="box col-md-4 col-xs-offset-1">
             <h4 class="heading-inner">About Me</h4>
-            
             <div class="hr"></div>
-
+            
+            <!-- Start intro -->
             <h4>I'm Shuyu Zheng from Xiamen, Fujian, China.</h4>
             <h4>I'm now a second-year CS Master student at Peking University, China, advised by Prof. Xuanzhe Liu. Previously, I received my CS bachelor degree in Peking University.</h4>
             <h4>My research focus on measuring, analysing and modeling "real-world" large scale user behavior/interactions. My current projects also cover the cutting-edge topics such as on-device machine learning and WebAssembly.</h4>
             <h4>In my spare time, I have a wide interest in literature, music, fashion design, handwork... And I'm always looking for something new!</h4>
+            <!-- End intro -->
                  
           </div>
           <!-- End left column -->
-             
           <!-- Start right image -->
           <div class="col-md-5">
             <img src="image/photo.png" alt="" class="photo-about"/> 
@@ -62,6 +65,210 @@
           <!-- End right image -->
         </div>
         <!-- End Session: About -->
+
+        <!-- Start Session: Publication -->
+        <div class="margin-publication" id="publication">
+          <div class="box-publication col-md-10 col-xs-offset-1">
+            <h3 class="heading-inner">Publications</h3>
+            <div class="hr"></div>
+            <div class="container desc">
+              <!-- Start Publication Item -->
+              <div class="row">
+                <div class="col-lg-2">
+                  <h4>The Web Conference 2019 (WWW 2019)</h4>
+                </div>
+                <div class="col-lg-5">
+                  <p class="e-heading">Moving Deep Learning into Web Browser: How Far Can We Go?</p>
+                </div>
+                <div class="col-lg-3">
+                  <p class="author">Yun Ma, Dongwei Xiang, <b>Shuyu Zheng</b>, Deyu Tian, Xuanzhe Liu
+                  </p>
+                </div>
+              </div>
+              <!-- End Publication Item -->
+              <!-- Start Publication Item -->
+              <div class="row">
+                <div class="col-lg-2">
+                  <h4>The 12th ACM International Conference on Web Search and Data Mining (WSDM 2019)</h4>
+                </div>
+                <div class="col-lg-5">
+                  <p class="e-heading">FaceOff: Assisting the Manifestation Design of Web Graphical User Interface.</p>
+                </div>
+                <div class="col-lg-3">
+                  <p class="author"><b>Shuyu Zheng</b>, Hu Ziniu, Yun Ma
+                  </p>
+                </div>
+              </div>
+              <!-- End Publication Item -->
+            </div>
+          </div>
+        </div>
+        <!-- End Session: Publication -->
+
+        <!-- Start Session: Project -->
+        <div class="margin-project" id="project">
+          <!-- Start publication list -->
+          <div class="box col-md-10 col-xs-offset-1">
+            <h3 class="heading-inner">Projects</h3>
+            <div class="hr"></div>
+
+            <!-- Start Project Item -->
+            <div class="media">
+              <div class="pull-left">
+                <span class="fa-stack fa-2x">
+                  <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                  <i class="fa fa-group fa-stack-1x fa-inverse"></i>
+                </span> 
+              </div>
+              <div class="media-body">
+                <h4 class="media-heading">Service Access Pattern Analysis</h4>
+                <p>
+                  This work is in cooperation with Alibaba Group. We conduct an empirical study on service access patterns via heterogeneous service clients based on two large-scale real-world datasets of launch events. We explore how users consume online services through different service clients, and to what extent their usage behavior patterns vary when consuming the same service. 
+                </p>
+              </div>
+            </div>
+            <!-- End Project Item -->
+            <!-- Start Project Item -->
+            <div class="media">
+              <div class="pull-left">
+                <span class="fa-stack fa-2x">
+                  <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                  <i class="fa fa-cloud fa-stack-1x fa-inverse"></i>
+                </span> 
+              </div>
+              <div class="media-body">
+                <h4 class="media-heading">Performance Measurement of On-browser Deep Learning Frameworks</h4>
+                <p>
+                  We conduct the first empirical study of deep learning in browsers, surveying 7 most popular JavaScript-based deep learning frameworks and digging out the performance gap between deep learning in browsers and on native platforms. Cooperate in a team of four advised by Professor Xuanzhe Liu, co-director of SaaS Research Group(System Research Lab, Institute of Software).
+                </p>
+              </div>
+            </div>
+            <!-- End Project Item -->
+            <!-- Start Project Item -->
+            <div class="media">
+              <div class="pull-left">
+                <span class="fa-stack fa-2x">
+                  <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                  <i class="fa fa-picture-o fa-stack-1x fa-inverse"></i>
+                </span> 
+              </div>
+              <div class="media-body">
+                <div class="col-md-8" style="padding-left: 0px;">
+                  <h4 class="media-heading">Web GUI Optimization based on Design Mining</h4>
+                  <p>
+                    Inspired by typical design process of human designers, we propose a data-driven automation system named FaceOff that assists the manifestation design of web GUI. We address the task by jointly training structure embedding and style discriminating networks. The first network supports structural retrieval, and the second aims to preserve overall visual harmonization. <a href="">[demo]</a>
+                  </p>
+                </div>
+                <div class="col-md-4">
+                  <img src="image/FaceOff.png" alt="" />
+                </div>
+              </div>
+            </div>
+            <!-- End Project Item -->
+            <!-- Start Project Item -->
+            <div class="media">
+              <div class="pull-left">
+                <span class="fa-stack fa-2x">
+                  <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                  <i class="fa fa-gamepad fa-stack-1x fa-inverse"></i>
+                </span> 
+              </div>
+              <div class="media-body">
+                <div class="col-md-8" style="padding-left: 0px;">
+                  <h4 class="media-heading">Game: Splender</h4>
+                  <p>
+                    An online version of Splender, a tabletop game of three. I redesigned the user interface of the game, providing a simplified, interative and hearting-warming user interface. Players can battle with AIs or play online with friends.
+                  </p>
+                </div>
+                <div class="col-md-4">
+                  <img src="image/splender.png" alt="" />
+                </div>
+              </div>
+            </div>
+            <!-- End Project Item -->
+            <!-- Start Project Item -->
+            <div class="media">
+              <div class="pull-left">
+                <span class="fa-stack fa-2x">
+                  <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                  <i class="fa fa-camera fa-stack-1x fa-inverse"></i>
+                </span> 
+              </div>
+              <div class="media-body">
+                <div class="col-md-8" style="padding-left: 0px;">
+                  <h4 class="media-heading">Portrait MaSter</h4>
+                  <p>
+                    We build Portrait MaSter, a tool that extracts portrait from an image and apply a style transfer according to user preferences. The system contains a demo frontend, a backend server and the inference pipeline. The overall inference process includes the human portrait matting stage and the style transfer stage.
+                  </p>
+                </div>
+                <div class="col-md-4">
+                  <img src="image/locket.png" alt="" />
+                </div>
+              </div>
+            </div>
+            <!-- End Project Item -->
+            <!-- Start Project Item -->
+            <div class="media">
+              <div class="pull-left">
+                <span class="fa-stack fa-2x">
+                  <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                  <i class="fa fa-heart fa-stack-1x fa-inverse"></i>
+                </span> 
+              </div>
+              <div class="media-body">
+                <div class="col-md-8" style="padding-left: 0px;">
+                  <h4 class="media-heading">Evol Calculator</h4>
+                  <p>
+                    A Web App that solves puzzles in the mobile game Evol which calculates the best card strategy. The calculator contains a responsive front end, a server and a database.
+                  </p>
+                </div>
+                <div class="col-md-4">
+                  <img src="image/evol.png" alt="" />
+                </div>
+              </div>
+            </div>
+            <!-- End Project Item -->
+            <!-- Start Project Item -->
+            <div class="media">
+              <div class="pull-left">
+                <span class="fa-stack fa-2x">
+                  <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                  <i class="fa fa-book fa-stack-1x fa-inverse"></i>
+                </span> 
+              </div>
+              <div class="media-body">
+                <h4 class="media-heading">JG Helper (Wechat Mini Program)</h4>
+                <p>
+                  A Wechat mini program for students to do quizzes and a webpage for teachers to edit tests, view results and details for the course Introduction to Computation. The project can be found on the Wechat mini program platform.
+                </p>
+              </div>
+            </div>
+            <!-- End Project Item -->
+            <!-- Start Project Item -->
+            <div class="media">
+              <div class="pull-left">
+                <span class="fa-stack fa-2x">
+                  <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                  <i class="fa fa-cutlery fa-stack-1x fa-inverse"></i>
+                </span> 
+              </div>
+              <div class="media-body">
+                <div class="col-md-8" style="padding-left: 0px;">
+                  <h4 class="media-heading">Takeaway Helper (Android App)</h4>
+                  <p>
+                    We Designed and developed an Android App that rearranges restaurant information from three major takeaway platforms. This App provides recommendation based on user behavior and real time discount information.
+                  </p>
+                </div>
+                <div class="col-md-4">
+                  <img src="image/takeaway.png" alt="" />
+                </div>
+              </div>
+            </div>
+            <!-- End Project Item -->
+          </div>
+          <!-- End publication list -->
+        </div>
+        <!-- End Session: Project -->
 
       </div>
       <!-- End main column -->

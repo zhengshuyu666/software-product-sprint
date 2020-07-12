@@ -137,13 +137,22 @@ h4 {
     line-height: 1.7em;
 }
 
-
 .hr {
     border-bottom: 2px solid #4f4d47;
     display: block;
     width: 14px;
     margin: auto;
     margin-bottom: 20px;
+}
+
+.box {
+    color: #898989;
+    font-family: 'Oxygen', sans-serif;
+    font-size: 1.1em;
+    border-top: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+    margin-top: 68px;
+    margin-right: 8%;
 }
 
 
@@ -240,16 +249,7 @@ h4 {
  ***************************************/
 .margin-about {
     margin-top: 40px;
-}
-
-.box-about {
-    color: #898989;
-    font-family: 'Oxygen', sans-serif;
-    font-size: 1.1em;
-    border-top: 1px solid #dddddd;
-    border-bottom: 1px solid #dddddd;
-    margin-top: 68px;
-    margin-right: 8%;
+    width: 100%;
 }
 
 .photo-about {
@@ -258,4 +258,67 @@ h4 {
     margin-left: 5px;
     border-radius: 20px;
 }
+
+/***************************************
+           Publication Session
+ ***************************************/
+.margin-publication {
+    margin-top: 100px;
+}
+
+.box-publication {
+    font-family: 'Oxygen', sans-serif;
+    font-size: 1.1em;
+    margin-top: 68px;
+    margin-right: 8%;
+}
+
+.desc {
+    padding-top: 25px;
+}
+
+.desc p {
+    color: #2f2f2f;
+}
+
+.desc .e-heading {
+    color: #e74c3c;
+    font-weight: 400;
+    text-transform: none;
+    font-size: 1em;
+}
+
+.author {
+    font-size: 0.9em;
+}
+
+
+/***************************************
+           Publication Session
+ ***************************************/
+.margin-project {
+    margin-top: 100px;
+}
+
+.media, .media-heading {
+    font-size: 1em;
+}
+
+.media .text-primary {
+    color: #4f4d47;
+}
+
+.media, p {
+    font-size: 1em;
+    font-family: 'Oxygen', sans-serif;  
+    color: #333;
+    line-height: 1.7em;
+    margin-top: 14px;
+    margin-bottom: 20px;    
+}
+
+.media-body img {
+    margin-top: 40px;
+}
+
 
