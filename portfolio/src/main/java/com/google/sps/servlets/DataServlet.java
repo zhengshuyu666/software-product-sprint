@@ -22,6 +22,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
+
 import com.google.sps.data.UserComment;
 
 
@@ -52,6 +56,15 @@ public class DataServlet extends HttpServlet {
         // Add comment to comment list
         UserComment newComment = new UserComment(userName, currentTime, commentText);
         commentList.add(newComment);
+
+        // Add comment to datastore
+        Entity commentEntity = new Entity("UserComment");
+        commentEntity.setProperty("userName", userName);
+        commentEntity.setProperty("currentTime", currentTime);
+        commentEntity.setProperty("commentText", commentText);
+
+        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+        datastore.put(commentEntity);
 
         // Redirect back to the HTML page.
         response.sendRedirect("/index.html#comment");
