@@ -25,6 +25,9 @@ import com.google.gson.Gson;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.SortDirection;
 
 import com.google.sps.data.UserComment;
 
@@ -32,11 +35,25 @@ import com.google.sps.data.UserComment;
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
-
-    private final ArrayList<UserComment> commentList = new ArrayList<UserComment>(); 
     
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+        Query query = new Query("UserComment").addSort("currentTime", SortDirection.DESCENDING);
+
+        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+        PreparedQuery results = datastore.prepare(query);
+
+        // Load comments from datastore
+        ArrayList<UserComment> commentList = new ArrayList<UserComment>();
+        for (Entity entity : results.asIterable()) {
+            String userName = (String) entity.getProperty("userName");
+            Date currentTime = (Date) entity.getProperty("currentTime");
+            String commentText = (String) entity.getProperty("commentText");
+
+            UserComment newComment = new UserComment(userName, currentTime, commentText);
+            commentList.add(newComment);
+        }
 
         // Convert the comment list to JSON
         String json = convertToJsonUsingGson(commentList);
@@ -52,10 +69,6 @@ public class DataServlet extends HttpServlet {
         String userName = getParameter(request, "form-name", "");
         Date currentTime = new Date();
         String commentText = getParameter(request, "form-comment", "");
-
-        // Add comment to comment list
-        UserComment newComment = new UserComment(userName, currentTime, commentText);
-        commentList.add(newComment);
 
         // Add comment to datastore
         Entity commentEntity = new Entity("UserComment");
