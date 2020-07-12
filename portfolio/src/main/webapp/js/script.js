@@ -26,3 +26,12 @@ function addRandomGreeting() {
   const greetingContainer = document.getElementById('greeting-container');
   greetingContainer.innerText = greeting;
 }
+
+/**
+ * Adds a hello message to the page.
+ */
+function getHello() {
+  fetch('/data').then(response => response.text()).then((data) => {
+    document.getElementById('hello-container').innerText = data;
+  });
+}

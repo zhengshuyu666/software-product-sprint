@@ -505,4 +505,16 @@ figure.effect-moses:hover img {
 }
 
 
-
+/***************************************
+                Comment
+ ***************************************/
+.comment-container {
+    color: #898989;
+    font-family: 'Oxygen', sans-serif;
+    font-size: 1.1em;
+    border-top: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+    margin-top: 54px;
+    margin-bottom: 72px;
+    text-align: center;
+}
