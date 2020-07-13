@@ -64,5 +64,35 @@ function getComments() {
  */
 $(document).ready(function(){ 
     getComments();
+
+    // Add smooth scroll listeners
+    document.querySelector('#nav-home').addEventListener('click', function(e) {
+        e.preventDefault();
+        window.scroll({ top: 0, left: 0, behavior: 'smooth' });
+    });
+    document.querySelector('#nav-about').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector('#about').scrollIntoView({ behavior: 'smooth' });
+    });
+    document.querySelector('#nav-publication').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector('#publication').scrollIntoView({ behavior: 'smooth' });
+    });
+    document.querySelector('#nav-project').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector('#project').scrollIntoView({ behavior: 'smooth' });
+    });
+    document.querySelector('#nav-hobby').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector('#hobby').scrollIntoView({ behavior: 'smooth' });
+    });
+    document.querySelector('#nav-comment').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector('#comment').scrollIntoView({ behavior: 'smooth' });
+    });
+    document.querySelector('#nav-back').addEventListener('click', function(e) {
+        e.preventDefault();
+        window.scroll({ top: 0, left: 0, behavior: 'smooth' });
+    });
 });
 
