@@ -70,7 +70,7 @@ function getComments() {
             }
             console.log(comment_content);
             document.getElementById('comment-list').innerHTML = comment_content;
-            document.getElementById('comment-form').innerHTML = comment_form_code + '<p><a href="' + res.redirectURL + '">Click Here to Logout</a></p>';
+            document.getElementById('comment-form').innerHTML = comment_form_code;
             document.getElementById('footer-text').innerHTML += '<a href="' + res.redirectURL +'" class="logout">Logout</a>';
         } else {
             document.getElementById('comment-form').innerHTML = '<p><a href="' + res.redirectURL + '">Login to View Comments</a></p>';
