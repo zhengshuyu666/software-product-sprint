@@ -34,6 +34,18 @@ var comment_time_code = '</p>\
     </div>\
     <p class="comment-text">'
 var comment_text_code = '</p></div>'
+var comment_form_code = '\
+<form action="/data" method="POST" class="col-xs-8 col-xs-offset-2">\
+    <div class="form-group">\
+        <label class="form-label col-sm-2" for="form-comment">Comment</label>\
+            <div class="col-sm-10">\
+                  <textarea class="form-control" name="form-comment" id="form-comment" rows="3" placeholder="Write some comments"></textarea>\
+            </div>\
+        </div>\
+    <div class="form-submit">\
+        <button type="submit" class="btn btn-submit">Submit</button>\
+    </div>\
+</form>'
 
 
 /**
@@ -58,8 +70,10 @@ function getComments() {
             }
             console.log(comment_content);
             document.getElementById('comment-list').innerHTML = comment_content;
+            document.getElementById('comment-form').innerHTML = comment_form_code + '<p><a href="' + res.redirectURL + '">Click Here to Logout</a></p>';
+            document.getElementById('footer-text').innerHTML += '<a href="' + res.redirectURL +'" class="logout">Logout</a>';
         } else {
-            document.getElementById('comment-list').innerHTML = '<a href="'+res.redirectURL+'">Login</a>';
+            document.getElementById('comment-form').innerHTML = '<p><a href="' + res.redirectURL + '">Login to View Comments</a></p>';
         }
   });
 }

@@ -501,7 +501,7 @@ figure.effect-moses:hover img {
     font-family: 'Oxygen', sans-serif;
     font-size: 1.1em;
     margin-top: 54px;
-    margin-bottom: 72px;
+    width: 100%;
 }
 
 .comment-list{
@@ -561,6 +561,17 @@ figure.effect-moses:hover img {
     color: #fff;
 }
 
+.comment-form {
+    margin-bottom: 72px;
+}
+
+.comment-form p {
+    margin-top: 20px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.2em;
+}
+
 /***************************************
                 Footer
  ***************************************/
@@ -583,4 +594,8 @@ figure.effect-moses:hover img {
     text-align: center;
 }
 
+.logout {
+    margin-left: 100px;
+    color: #e74c3c;
+}
 
