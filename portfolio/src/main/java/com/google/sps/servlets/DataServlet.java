@@ -15,18 +15,94 @@
 package com.google.sps.servlets;
 
 import java.io.IOException;
+import java.util.Date;
+import java.util.ArrayList;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import com.google.gson.Gson;
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.SortDirection;
+
+import com.google.sps.data.UserComment;
+
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
+    
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    response.setContentType("text/html;");
-    response.getWriter().println("<h1>Hello world!</h1>");
-  }
+        Query query = new Query("UserComment").addSort("currentTime", SortDirection.DESCENDING);
+
+        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+        PreparedQuery results = datastore.prepare(query);
+
+        // Load comments from datastore
+        ArrayList<UserComment> commentList = new ArrayList<UserComment>();
+        for (Entity entity : results.asIterable()) {
+            String userName = (String) entity.getProperty("userName");
+            Date currentTime = (Date) entity.getProperty("currentTime");
+            String commentText = (String) entity.getProperty("commentText");
+
+            UserComment newComment = new UserComment(userName, currentTime, commentText);
+            commentList.add(newComment);
+        }
+
+        // Convert the comment list to JSON
+        String json = convertToJsonUsingGson(commentList);
+
+        // Send the JSON as the response
+        response.setContentType("application/json;");
+        response.getWriter().println(json);
+    }
+
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        // Receive form data
+        String userName = getParameter(request, "form-name", "");
+        Date currentTime = new Date();
+        String commentText = getParameter(request, "form-comment", "");
+
+        // Add comment to datastore
+        Entity commentEntity = new Entity("UserComment");
+        commentEntity.setProperty("userName", userName);
+        commentEntity.setProperty("currentTime", currentTime);
+        commentEntity.setProperty("commentText", commentText);
+
+        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+        datastore.put(commentEntity);
+
+        // Redirect back to the HTML page.
+        response.sendRedirect("/index.html#comment");
+    }
+
+    /**
+    * Converts a UserComment list instance into a JSON string using the Gson library. Note: We first added
+    * the Gson library dependency to pom.xml.
+    */
+    private String convertToJsonUsingGson(ArrayList<UserComment> comments) {
+        Gson gson = new Gson();
+        String json = gson.toJson(comments);
+        return json;
+    }
+
+    /**
+    * @return the request parameter, or the default value if the parameter
+    *         was not specified by the client
+    */
+    private String getParameter(HttpServletRequest request, String name, String defaultValue) {
+        String value = request.getParameter(name);
+        if (value == null) {
+            return defaultValue;
+        }
+        return value;
+    }
+
 }

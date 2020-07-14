@@ -1,0 +1,582 @@
+/***************************************
+    Global Settings and Styles
+ ***************************************/
+body {
+    background-color: white;
+    background-image: url(../image/bg.jpg);
+    background-position: left top;
+    background-repeat: repeat;
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    color: #4f4d47;
+    text-decoration: none;
+    -webkit-transition: all .35s; 
+    transition: all .35s;
+}
+
+a:hover {
+    color: #dadada; 
+    text-decoration: underline;
+}
+
+.wrapper {
+  background: white;
+  margin: 70px auto;
+  width: 90%;
+  max-width: 1250px;
+  overflow: hidden;
+  border: 6px solid #eaeaea;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+img {
+    max-width: 100%;    
+    height: auto;
+}
+
+p {
+    font-size: 1.1em;
+    font-family: 'Oxygen', sans-serif;  
+    color: #333;
+    line-height: 1.7em;
+    margin-top: 14px;
+    margin-bottom: 20px;    
+}
+
+
+h1 {
+    font-family: 'Qwigley', Helvetica, Sans-serif;     
+    font-size: 2.2em;
+    font-weight: 600;
+    color: #4f4d47;
+    margin-top: 50px;
+    margin-bottom: 0;
+    text-align: center;
+    line-height: 1.7em;
+}
+
+h2 {    
+    font-family: 'Oxygen', sans-serif;  
+    font-size: 1em;
+    font-weight: 400;
+    color: #898989;
+    margin-top: 40px;
+    margin-bottom: 34px;
+    text-align: center;
+    line-height: 1.7em;
+    padding-left: 150px;
+    padding-right: 150px;
+}
+
+h3 {
+    font-family: 'Oxygen', sans-serif;  
+    font-size: 1em;
+    font-weight: 400;
+    color: #898989;
+    margin-top: 16px;
+    margin-bottom: 14px;
+    text-align: left;
+    line-height: 1.7em;
+}
+
+h4 {
+    font-family: 'Oxygen', sans-serif;  
+    font-size: 1em;
+    font-weight: 400;
+    color: #898989;
+    margin-top: 16px;
+    margin-bottom: 14px;
+    text-align: left;
+    line-height: 1.7em;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.clickable:hover {
+    cursor: pointer;
+}
+
+.available {
+    border: 3px solid #4caf50 !important;
+}
+
+.available:hover {
+    cursor: pointer;
+}
+
+.chosen {
+    border: 3px solid #673ab7 !important;
+}
+
+.chosen:hover {
+    cursor: pointer;
+}
+
+.flex {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.heading-inner {
+    font-family: 'Qwigley', Helvetica, Sans-serif;     
+    font-size: 2.2em;
+    font-weight: 600;
+    color: #4f4d47;
+    margin-top: 16px;
+    margin-bottom: 0;
+    text-align: center;
+    line-height: 1.7em;
+}
+
+.hr {
+    border-bottom: 2px solid #4f4d47;
+    display: block;
+    width: 14px;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+.box {
+    color: #898989;
+    font-family: 'Oxygen', sans-serif;
+    font-size: 1.1em;
+    border-top: 1px solid #dddddd;
+    /*border-bottom: 1px solid #dddddd;*/
+    margin-top: 68px;
+    margin-right: 8%;
+}
+
+
+/***************************************
+               Colors
+ ***************************************/
+.bg-black {
+    background-color: #000000;
+}
+
+.bg-grey {
+    background-color: #D8D8D8;
+}
+
+.bg-white {
+    background-color: #FBFBFB;
+}
+
+.color-white {
+    color: #FBFBFB;
+}
+
+.color-grey {
+    color: #D8D8D8;
+}
+
+
+/***************************************
+          Header and Navigation
+ ***************************************/
+
+.brand {
+    display: inherit;
+    margin: 0 0 20px 0;
+    padding: 30px 0 14px;
+    text-align: center;
+    font-family: 'Qwigley', Helvetica, Sans-serif;
+    font-size: 4.1em;
+    line-height: normal;
+    color: #4f4d47;
+    text-transform: capitalize;
+}
+
+.navbar-nav {
+    text-transform: capitalize;
+    font-weight: 400;
+}
+
+.navbar {
+    border-radius: 0; 
+    min-height: 0;
+}
+
+.navbar-default {
+    border: none;
+    background: #fff;
+    margin-top: 7px;
+    padding-bottom: 12px;
+}
+    
+.navbar-default .navbar-nav>li>a {
+    color: #898989;
+    font-family: 'Oxygen', sans-serif;
+    font-size: 1.1em;
+    border-top: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+    color: #999999;
+}
+
+.nav>li>a {
+    padding: 20px;
+}
+
+.navbar-nav>li>a {
+    line-height: normal;
+}
+
+.navbar-nav {
+    display: table;
+    float: none;
+    margin: 0 auto;
+    table-layout: fixed;
+}
+
+.navbar-default .navbar-nav > .active > a, 
+.navbar-default .navbar-nav > .active > a:hover, 
+.navbar-default .navbar-nav > .active > a:focus {
+    color: #4f4d47;
+    background-color: transparent;
+}
+
+
+/***************************************
+              About Session
+ ***************************************/
+.margin-about {
+    margin-top: 40px;
+    width: 100%;
+}
+
+.photo-about {
+    margin-top: 59px;
+    margin-bottom: 30px;
+    margin-left: 5px;
+    border-radius: 20px;
+}
+
+/***************************************
+           Publication Session
+ ***************************************/
+.margin-publication {
+    margin-top: 100px;
+}
+
+.box-publication {
+    font-family: 'Oxygen', sans-serif;
+    font-size: 1.1em;
+    margin-top: 68px;
+    margin-right: 8%;
+}
+
+.desc {
+    padding-top: 25px;
+}
+
+.desc p {
+    color: #2f2f2f;
+}
+
+.desc .e-heading {
+    color: #e74c3c;
+    font-weight: 400;
+    text-transform: none;
+    font-size: 1em;
+}
+
+.author {
+    font-size: 0.9em;
+}
+
+
+/***************************************
+           Publication Session
+ ***************************************/
+.margin-project {
+    margin-top: 100px;
+}
+
+.media, .media-heading {
+    font-size: 1em;
+}
+
+.media .text-primary {
+    color: #4f4d47;
+}
+
+.media, p {
+    font-size: 1em;
+    font-family: 'Oxygen', sans-serif;  
+    color: #333;
+    line-height: 1.7em;
+    margin-top: 14px;
+    margin-bottom: 20px;    
+}
+
+.media-body img {
+    margin-top: 40px;
+}
+
+
+
+/***************************************
+            Hobby Session
+ ***************************************/
+
+.margin-hobby {
+    margin-top: 100px;
+}
+
+.portfolio-items {
+  list-style: none outside none;
+  margin: 0 0 0 calc(100vw / 12);
+  padding: 0;
+}
+
+.portfolio-items > li {
+  float: left;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.portfolio-item {
+  margin: 0;
+  padding: 0;
+}
+
+.grid {
+    position: relative;
+    list-style: none;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.grid figure {
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    cursor: pointer;
+}
+
+.grid figure img {
+    position: relative;
+    display: block;
+}
+
+.grid figure figcaption {
+    padding: 2em;
+    color: #fff;
+    text-transform: uppercase;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.grid figure figcaption::before,
+.grid figure figcaption::after {
+    pointer-events: none;
+}
+
+.grid figure figcaption,
+.grid figure figcaption > a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.grid figure figcaption > a {
+    z-index: 1000;
+    text-indent: 200%;
+    white-space: nowrap;
+    font-size: 0;
+    opacity: 0;
+}
+
+.grid figure h2 {
+    word-spacing: -0.15em;
+    font-weight: 400;
+    font-family: 'Oxygen', sans-serif;
+}
+
+.grid figure h2 span {
+    font-weight: 400;
+    margin-left: 10px;
+}
+
+.grid figure h2,
+.grid figure p {
+    margin: 0;
+}
+
+.grid figure p {
+    letter-spacing: 1px;
+    font-size: 1em;
+    color: white;
+    text-align: center;
+}
+
+figure.effect-moses {
+    background: -webkit-linear-gradient(-45deg, #EC65B7 0%,#05E0D8 100%);
+    background: linear-gradient(-45deg, #EC65B7 0%,#05E0D8 100%);
+}
+
+figure.effect-moses img {
+    opacity: 0.85;
+    -webkit-transition: opacity 0.35s;
+    transition: opacity 0.35s;
+}
+
+figure.effect-moses h2,
+figure.effect-moses p {
+    padding: 20px;
+    width: 50%;
+    height: 50%;
+    border-top: 1px solid #fff;
+    color: white;
+}
+
+figure.effect-moses h2 {
+    padding: 20px;
+    width: 50%;
+    height: 50%;
+    text-align: left;
+    -webkit-transition: -webkit-transform 0.35s;
+    transition: transform 0.35s;
+    -webkit-transform: translate3d(10px,10px,0);
+    transform: translate3d(10px,10px,0);
+    font-size: 1.6em;
+}
+
+figure.effect-moses p {
+    float: right;
+    padding: 20px;
+    text-align: right;
+    opacity: 0;
+    -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+    transition: opacity 0.35s, transform 0.35s;
+    -webkit-transform: translate3d(-50%,-50%,0);
+    transform: translate3d(-50%,-50%,0);
+    font-size: 0.9em;
+}
+
+figure.effect-moses:hover h2 {
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+}
+
+figure.effect-moses:hover p {
+    opacity: 1;
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+}
+
+figure.effect-moses:hover img {
+    opacity: 0.6;
+}
+
+
+/***************************************
+                Comment
+ ***************************************/
+.margin-comment {
+    margin-top: 100px;
+}
+.comment-container {
+    color: #898989;
+    font-family: 'Oxygen', sans-serif;
+    font-size: 1.1em;
+    margin-top: 54px;
+    margin-bottom: 72px;
+}
+
+.comment-list{
+    column-count: 3;
+    column-gap: 2em;
+}
+
+.comment-item {
+    margin-bottom: 3em;
+    break-inside: avoid;
+    position: relative;
+}
+
+.comment-name {
+    margin-left: 10px;
+    margin-block-start: 0em !important;
+    margin-block-end: 0.5em !important;
+    font-weight: 600;
+}
+
+.comment-time {
+    margin-left: 10px;
+    margin-block-start: 0em !important;
+    margin-block-end: 0em !important;
+    font-size: 0.8em;
+    color: #898989;
+}
+
+.comment-text {
+    margin-block-left: 0em !important;
+}
+
+.form-label {
+    color: #4f4d47;
+    font-family: 'Oxygen', sans-serif;
+    font-size: 1.1em;
+}
+
+.form-submit {
+    width: 100%;
+    text-align: center;
+
+}
+
+.margin-comment .form-control {
+    margin-bottom: 20px !important;
+}
+
+.btn-submit {
+    border-color: #898989;
+    color: #4f4d47;
+    background-color: #fff;
+}
+
+.btn-submit:hover {
+    background-color: #898989;
+    color: #fff;
+}
+
+/***************************************
+                Footer
+ ***************************************/
+.footer {
+    color: #898989;
+    font-family: 'Oxygen', sans-serif;
+    font-size: 1.1em;
+    border-top: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+    margin-top: 54px;
+    margin-bottom: 72px;
+}
+
+.footer h5 {
+    font-size: 1em;
+    font-weight: 400;
+    color: #898989;
+    margin-top: 18px;
+    padding-bottom: 12px;
+    text-align: center;
+}
+
+
