@@ -23,20 +23,14 @@ public final class CommentResponse {
     private final Boolean isLogegIn;
     private final String redirectURL;
     private final ArrayList<UserComment> commentList;
-    private final String userEmail;
-    private final String userName;
 
-    public CommentResponse(Boolean isLogegIn, String redirectURL, ArrayList<UserComment> commentList, String userEmail, String userName) {
+    public CommentResponse(Boolean isLogegIn, String redirectURL, ArrayList<UserComment> commentList) {
         this.isLogegIn = isLogegIn;
         this.redirectURL = redirectURL;
         if (isLogegIn) {
             this.commentList = commentList;
-            this.userEmail = userEmail;
-            this.userName = userName;
         } else {
             this.commentList = new ArrayList<UserComment>();
-            this.userEmail = "";
-            this.userName = "";
         }
     }
 
@@ -50,14 +44,6 @@ public final class CommentResponse {
 
     public ArrayList<UserComment> getCommentList() {
         return commentList;
-    }
-
-    public String getUserEmail() {
-        return userEmail;
-    }
-
-    public String getUserName() {
-        return userName;
     }
 
 }

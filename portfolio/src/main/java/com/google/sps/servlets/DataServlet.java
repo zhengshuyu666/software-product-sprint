@@ -47,7 +47,7 @@ public class DataServlet extends HttpServlet {
         // If user is not logged in, response CommentResponse json with login status and rediretURL
         if (!userService.isUserLoggedIn()) {
             String loginUrl = userService.createLoginURL("/");
-            CommentResponse responseData = new CommentResponse(false, loginUrl, null, "", "");
+            CommentResponse responseData = new CommentResponse(false, loginUrl, null);
             String json = convertToJsonUsingGson(responseData);
             response.getWriter().println(json);
             return;
@@ -72,7 +72,7 @@ public class DataServlet extends HttpServlet {
         }
 
         // Build response json
-        CommentResponse responseData = new CommentResponse(true, logoutUrl, commentList, userEmail, "");
+        CommentResponse responseData = new CommentResponse(true, logoutUrl, commentList);
         String json = convertToJsonUsingGson(responseData);
 
         // Send the JSON as the response
@@ -81,6 +81,21 @@ public class DataServlet extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        
+        UserService userService = UserServiceFactory.getUserService();
+
+        // If user is not logged in, response CommentResponse json with login status and rediretURL
+        if (!userService.isUserLoggedIn()) {
+            String loginUrl = userService.createLoginURL("/");
+            response.getWriter().println("<p>Please Login.</p>");
+            response.getWriter().println("<p>Login <a href=\"" + loginUrl + "\">Here</a>.</p>");
+            response.getWriter().println("<p><a href=\"/\">Go Back</a></p>");
+            return;
+        }      
+
+        // Get user email
+        String userEmail = userService.getCurrentUser().getEmail();
+
         // Receive form data
         String userName = getParameter(request, "form-name", "");
         Date currentTime = new Date();
@@ -88,7 +103,7 @@ public class DataServlet extends HttpServlet {
 
         // Add comment to datastore
         Entity commentEntity = new Entity("UserComment");
-        commentEntity.setProperty("userName", userName);
+        commentEntity.setProperty("userName", userEmail);
         commentEntity.setProperty("currentTime", currentTime);
         commentEntity.setProperty("commentText", commentText);
 
