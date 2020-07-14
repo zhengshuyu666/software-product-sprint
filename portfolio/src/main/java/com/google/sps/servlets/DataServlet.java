@@ -28,9 +28,11 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
+import com.google.appengine.api.users.UserService;
+import com.google.appengine.api.users.UserServiceFactory;
 
 import com.google.sps.data.UserComment;
-
+import com.google.sps.data.CommentResponse;
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
@@ -38,13 +40,27 @@ public class DataServlet extends HttpServlet {
     
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.setContentType("application/json;");
 
-        Query query = new Query("UserComment").addSort("currentTime", SortDirection.DESCENDING);
+        UserService userService = UserServiceFactory.getUserService();
 
-        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-        PreparedQuery results = datastore.prepare(query);
+        // If user is not logged in, response CommentResponse json with login status and rediretURL
+        if (!userService.isUserLoggedIn()) {
+            String loginUrl = userService.createLoginURL("/");
+            CommentResponse responseData = new CommentResponse(false, loginUrl, null, "", "");
+            String json = convertToJsonUsingGson(responseData);
+            response.getWriter().println(json);
+            return;
+        } 
+
+        // If the user is logged in, response CommentResponse json with login status, rediretURL, comment list and user info
+        String logoutUrl = userService.createLogoutURL("/");
+        String userEmail = userService.getCurrentUser().getEmail();
 
         // Load comments from datastore
+        Query query = new Query("UserComment").addSort("currentTime", SortDirection.DESCENDING);
+        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+        PreparedQuery results = datastore.prepare(query);
         ArrayList<UserComment> commentList = new ArrayList<UserComment>();
         for (Entity entity : results.asIterable()) {
             String userName = (String) entity.getProperty("userName");
@@ -55,11 +71,11 @@ public class DataServlet extends HttpServlet {
             commentList.add(newComment);
         }
 
-        // Convert the comment list to JSON
-        String json = convertToJsonUsingGson(commentList);
+        // Build response json
+        CommentResponse responseData = new CommentResponse(true, logoutUrl, commentList, userEmail, "");
+        String json = convertToJsonUsingGson(responseData);
 
         // Send the JSON as the response
-        response.setContentType("application/json;");
         response.getWriter().println(json);
     }
 
@@ -84,12 +100,12 @@ public class DataServlet extends HttpServlet {
     }
 
     /**
-    * Converts a UserComment list instance into a JSON string using the Gson library. Note: We first added
+    * Converts a CommentResponse instance into a JSON string using the Gson library. Note: We first added
     * the Gson library dependency to pom.xml.
     */
-    private String convertToJsonUsingGson(ArrayList<UserComment> comments) {
+    private String convertToJsonUsingGson(CommentResponse responseData) {
         Gson gson = new Gson();
-        String json = gson.toJson(comments);
+        String json = gson.toJson(responseData);
         return json;
     }
 

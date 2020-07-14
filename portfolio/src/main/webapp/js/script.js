@@ -43,19 +43,24 @@ function getComments() {
     console.log("getComments");
     fetch('/data')
     .then(response => response.json())
-    .then((comments) => {
-        var comment_content = '';
-        for (var i = 0; i < comments.length; i++) {
-            comment_content = comment_content + comment_item_code;
-            comment_content = comment_content + comments[i].userName;
-            comment_content = comment_content + comment_name_code;
-            comment_content = comment_content + comments[i].currentTime;
-            comment_content = comment_content + comment_time_code;
-            comment_content = comment_content + comments[i].commentText;
-            comment_content = comment_content + comment_text_code;
+    .then((res) => {
+        if (res.isLogegIn) {
+            var comments = res.commentList;
+            var comment_content = '';
+            for (var i = 0; i < comments.length; i++) {
+                comment_content = comment_content + comment_item_code;
+                comment_content = comment_content + comments[i].userName;
+                comment_content = comment_content + comment_name_code;
+                comment_content = comment_content + comments[i].currentTime;
+                comment_content = comment_content + comment_time_code;
+                comment_content = comment_content + comments[i].commentText;
+                comment_content = comment_content + comment_text_code;
+            }
+            console.log(comment_content);
+            document.getElementById('comment-list').innerHTML = comment_content;
+        } else {
+            document.getElementById('comment-list').innerHTML = '<a href="'+res.redirectURL+'">Login</a>';
         }
-        console.log(comment_content);
-        document.getElementById('comment-list').innerHTML = comment_content;
   });
 }
 
