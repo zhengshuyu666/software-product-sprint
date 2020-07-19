@@ -16,6 +16,7 @@ package com.google.sps.servlets;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 import java.util.ArrayList;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -74,8 +75,8 @@ public class DataServlet extends HttpServlet {
             Date currentTime = (Date) entity.getProperty("currentTime");
             String commentText = (String) entity.getProperty("commentText");
             String imageURL = (String) entity.getProperty("imageURL");
-
-            UserComment newComment = new UserComment(userName, currentTime, commentText, imageURL);
+            List<String> imageLabels = (List<String>) entity.getProperty("imageLabels");
+            UserComment newComment = new UserComment(userName, currentTime, commentText, imageURL, imageLabels);
             commentList.add(newComment);
         }
 

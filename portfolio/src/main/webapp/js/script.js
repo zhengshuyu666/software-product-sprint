@@ -35,6 +35,7 @@ var vm = new Vue({
                 that.uploadURL = res.uploadURL;
                 if (res.isLogegIn) {
                     that.commentList = res.commentList;
+                    console.log(res.commentList);
                 }
             });
         }, 

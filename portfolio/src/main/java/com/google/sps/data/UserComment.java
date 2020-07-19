@@ -15,6 +15,7 @@
 package com.google.sps.data;
 
 import java.util.Date;
+import java.util.List;
 
 /** Class containing user comment. */
 public final class UserComment {
@@ -23,12 +24,14 @@ public final class UserComment {
     private final Date currentTime;
     private final String commentText;
     private final String imageURL;
+    private final List<String> imageLabels;
 
-    public UserComment(String userName, Date currentTime, String commentText, String imageURL) {
+    public UserComment(String userName, Date currentTime, String commentText, String imageURL, List<String> imageLabels) {
         this.userName = userName;
         this.currentTime = currentTime;
         this.commentText = commentText;
         this.imageURL = imageURL;
+        this.imageLabels = imageLabels;
     }
 
     public String getUserName() {
@@ -45,6 +48,10 @@ public final class UserComment {
 
     public String getImageURL() {
         return imageURL;
+    }
+
+    public List<String> getImageLabels() {
+        return imageLabels;
     }
 
 }
