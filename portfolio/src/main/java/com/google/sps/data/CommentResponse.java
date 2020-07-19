@@ -22,11 +22,13 @@ public final class CommentResponse {
 
     private final Boolean isLogegIn;
     private final String redirectURL;
+    private final String uploadURL;
     private final ArrayList<UserComment> commentList;
 
-    public CommentResponse(Boolean isLogegIn, String redirectURL, ArrayList<UserComment> commentList) {
+    public CommentResponse(Boolean isLogegIn, String redirectURL, String uploadURL, ArrayList<UserComment> commentList) {
         this.isLogegIn = isLogegIn;
         this.redirectURL = redirectURL;
+        this.uploadURL = uploadURL;
         if (isLogegIn) {
             this.commentList = commentList;
         } else {
@@ -40,6 +42,10 @@ public final class CommentResponse {
         
     public String getRedirectURL() {
         return redirectURL;
+    }
+
+    public String getUploadURL() {
+        return uploadURL;
     }
 
     public ArrayList<UserComment> getCommentList() {

@@ -30,11 +30,14 @@ import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
+import com.google.appengine.api.blobstore.BlobstoreService;
+import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
+
 
 import com.google.sps.data.UserComment;
 import com.google.sps.data.CommentResponse;
 
-/** Servlet that returns some example content. TODO: modify this file to handle comments data */
+/** Servlet that returns comment data. */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
     
@@ -42,12 +45,16 @@ public class DataServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("application/json;");
 
+        // Get the Blobstore URL
+        BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
+        String uploadUrl = blobstoreService.createUploadUrl("/add-comment");
+
         UserService userService = UserServiceFactory.getUserService();
 
         // If user is not logged in, response CommentResponse json with login status and rediretURL
         if (!userService.isUserLoggedIn()) {
             String loginUrl = userService.createLoginURL("/");
-            CommentResponse responseData = new CommentResponse(false, loginUrl, null);
+            CommentResponse responseData = new CommentResponse(false, loginUrl, uploadUrl, null);
             String json = convertToJsonUsingGson(responseData);
             response.getWriter().println(json);
             return;
@@ -66,53 +73,54 @@ public class DataServlet extends HttpServlet {
             String userName = (String) entity.getProperty("userName");
             Date currentTime = (Date) entity.getProperty("currentTime");
             String commentText = (String) entity.getProperty("commentText");
+            String imageURL = (String) entity.getProperty("imageURL");
 
-            UserComment newComment = new UserComment(userName, currentTime, commentText);
+            UserComment newComment = new UserComment(userName, currentTime, commentText, imageURL);
             commentList.add(newComment);
         }
 
         // Build response json
-        CommentResponse responseData = new CommentResponse(true, logoutUrl, commentList);
+        CommentResponse responseData = new CommentResponse(true, logoutUrl, uploadUrl, commentList);
         String json = convertToJsonUsingGson(responseData);
 
         // Send the JSON as the response
         response.getWriter().println(json);
     }
 
-    @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    // @Override
+    // public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         
-        UserService userService = UserServiceFactory.getUserService();
+    //     UserService userService = UserServiceFactory.getUserService();
 
-        // If user is not logged in, response CommentResponse json with login status and rediretURL
-        if (!userService.isUserLoggedIn()) {
-            String loginUrl = userService.createLoginURL("/");
-            response.getWriter().println("<p>Please Login.</p>");
-            response.getWriter().println("<p>Login <a href=\"" + loginUrl + "\">Here</a>.</p>");
-            response.getWriter().println("<p><a href=\"/\">Go Back</a></p>");
-            return;
-        }      
+    //     // If user is not logged in, response CommentResponse json with login status and rediretURL
+    //     if (!userService.isUserLoggedIn()) {
+    //         String loginUrl = userService.createLoginURL("/");
+    //         response.getWriter().println("<p>Please Login.</p>");
+    //         response.getWriter().println("<p>Login <a href=\"" + loginUrl + "\">Here</a>.</p>");
+    //         response.getWriter().println("<p><a href=\"/\">Go Back</a></p>");
+    //         return;
+    //     }      
 
-        // Get user email
-        String userEmail = userService.getCurrentUser().getEmail();
+    //     // Get user email
+    //     String userEmail = userService.getCurrentUser().getEmail();
 
-        // Receive form data
-        String userName = getParameter(request, "form-name", "");
-        Date currentTime = new Date();
-        String commentText = getParameter(request, "form-comment", "");
+    //     // Receive form data
+    //     String userName = getParameter(request, "form-name", "");
+    //     Date currentTime = new Date();
+    //     String commentText = getParameter(request, "form-comment", "");
 
-        // Add comment to datastore
-        Entity commentEntity = new Entity("UserComment");
-        commentEntity.setProperty("userName", userEmail);
-        commentEntity.setProperty("currentTime", currentTime);
-        commentEntity.setProperty("commentText", commentText);
+    //     // Add comment to datastore
+    //     Entity commentEntity = new Entity("UserComment");
+    //     commentEntity.setProperty("userName", userEmail);
+    //     commentEntity.setProperty("currentTime", currentTime);
+    //     commentEntity.setProperty("commentText", commentText);
 
-        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-        datastore.put(commentEntity);
+    //     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    //     datastore.put(commentEntity);
 
-        // Redirect back to the HTML page.
-        response.sendRedirect("/index.html#comment");
-    }
+    //     // Redirect back to the HTML page.
+    //     response.sendRedirect("/index.html#comment");
+    // }
 
     /**
     * Converts a CommentResponse instance into a JSON string using the Gson library. Note: We first added
@@ -124,16 +132,16 @@ public class DataServlet extends HttpServlet {
         return json;
     }
 
-    /**
-    * @return the request parameter, or the default value if the parameter
-    *         was not specified by the client
-    */
-    private String getParameter(HttpServletRequest request, String name, String defaultValue) {
-        String value = request.getParameter(name);
-        if (value == null) {
-            return defaultValue;
-        }
-        return value;
-    }
+    // /**
+    // * @return the request parameter, or the default value if the parameter
+    // *         was not specified by the client
+    // */
+    // private String getParameter(HttpServletRequest request, String name, String defaultValue) {
+    //     String value = request.getParameter(name);
+    //     if (value == null) {
+    //         return defaultValue;
+    //     }
+    //     return value;
+    // }
 
 }

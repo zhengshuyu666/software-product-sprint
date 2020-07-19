@@ -22,11 +22,13 @@ public final class UserComment {
     private final String userName;
     private final Date currentTime;
     private final String commentText;
+    private final String imageURL;
 
-    public UserComment(String userName, Date currentTime, String commentText) {
+    public UserComment(String userName, Date currentTime, String commentText, String imageURL) {
         this.userName = userName;
         this.currentTime = currentTime;
         this.commentText = commentText;
+        this.imageURL = imageURL;
     }
 
     public String getUserName() {
@@ -39,6 +41,10 @@ public final class UserComment {
 
     public String getCommentText() {
         return commentText;
+    }
+
+    public String getImageURL() {
+        return imageURL;
     }
 
 }
