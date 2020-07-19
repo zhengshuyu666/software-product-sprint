@@ -74,9 +74,13 @@ public class DataServlet extends HttpServlet {
             String userName = (String) entity.getProperty("userName");
             Date currentTime = (Date) entity.getProperty("currentTime");
             String commentText = (String) entity.getProperty("commentText");
+            float score = 0;
+            if (entity.getProperty("score") != null)
+                score = (float) entity.getProperty("score");
             String imageURL = (String) entity.getProperty("imageURL");
             List<String> imageLabels = (List<String>) entity.getProperty("imageLabels");
-            UserComment newComment = new UserComment(userName, currentTime, commentText, imageURL, imageLabels);
+            
+            UserComment newComment = new UserComment(userName, currentTime, commentText, score, imageURL, imageLabels);
             commentList.add(newComment);
         }
 

@@ -23,13 +23,15 @@ public final class UserComment {
     private final String userName;
     private final Date currentTime;
     private final String commentText;
+    private final float score;
     private final String imageURL;
     private final List<String> imageLabels;
 
-    public UserComment(String userName, Date currentTime, String commentText, String imageURL, List<String> imageLabels) {
+    public UserComment(String userName, Date currentTime, String commentText, float score, String imageURL, List<String> imageLabels) {
         this.userName = userName;
         this.currentTime = currentTime;
         this.commentText = commentText;
+        this.score = score;
         this.imageURL = imageURL;
         this.imageLabels = imageLabels;
     }
@@ -44,6 +46,10 @@ public final class UserComment {
 
     public String getCommentText() {
         return commentText;
+    }
+
+    public float getScore() {
+        return score;
     }
 
     public String getImageURL() {

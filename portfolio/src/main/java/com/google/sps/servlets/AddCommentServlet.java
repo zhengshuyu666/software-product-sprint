@@ -47,6 +47,9 @@ import com.google.cloud.vision.v1.EntityAnnotation;
 import com.google.cloud.vision.v1.Feature;
 import com.google.cloud.vision.v1.Image;
 import com.google.cloud.vision.v1.ImageAnnotatorClient;
+import com.google.cloud.language.v1.Document;
+import com.google.cloud.language.v1.LanguageServiceClient;
+import com.google.cloud.language.v1.Sentiment;
 
 import com.google.sps.data.UserComment;
 import com.google.sps.data.CommentResponse;
@@ -76,6 +79,13 @@ public class AddCommentServlet extends HttpServlet {
         Date currentTime = new Date();
         String commentText = getParameter(request, "form-comment", "");
         
+        // Analyse sentiment of commentText
+        Document doc = Document.newBuilder().setContent(commentText).setType(Document.Type.PLAIN_TEXT).build();
+        LanguageServiceClient languageService = LanguageServiceClient.create();
+        Sentiment sentiment = languageService.analyzeSentiment(doc).getDocumentSentiment();
+        float score = sentiment.getScore();
+        languageService.close();
+
         // Get the BlobKey that points to the image uploaded by the user.
         BlobKey blobKey = getBlobKey(request, "form-pic");
 
@@ -92,7 +102,6 @@ public class AddCommentServlet extends HttpServlet {
 
             for (EntityAnnotation label : Labels) {
                 imageLabels.add(label.getDescription());
-                // out.println("<li>" + label.getDescription() + " " + label.getScore());
             }
         }
 
@@ -103,6 +112,7 @@ public class AddCommentServlet extends HttpServlet {
         commentEntity.setProperty("commentText", commentText);
         commentEntity.setProperty("imageURL", imageUrl);
         commentEntity.setProperty("imageLabels", imageLabels);
+        commentEntity.setProperty("score", score);
 
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
         datastore.put(commentEntity);

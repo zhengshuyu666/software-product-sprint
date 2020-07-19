@@ -379,7 +379,11 @@
                     <p class="comment-time">{{item.currentTime}}</p>
                   </div>
                 </div>
-                <p class="comment-text">{{item.commentText}}</p>
+                <p class="comment-text">{{item.commentText}}
+                    <span v-if="item.score > 0">😀</span>
+                    <span v-else-if="item.score == 0">😐</span>
+                    <span v-else="item.score < 0">😔</span>
+                </p>
                 <div class="comment-labels">
                     <img v-if="item.imageURL" :src="item.imageURL"/>
                     <span v-for="(label, i) in item.imageLabels" v-if="i < 4" :key="i" class="label label-info">{{label}}</span>
