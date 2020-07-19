@@ -70,12 +70,61 @@ var vm = new Vue({
                 e.preventDefault();
                 window.scroll({ top: 0, left: 0, behavior: 'smooth' });
             });
+        },
+        /**
+         * Creates a chart and adds it to the page.
+         */
+        loadChart() {
+            var divWidth = this.getWidth(document.getElementById('chart-container'));
+            google.charts.load('current', {'packages':['corechart']});
+            google.charts.setOnLoadCallback(function() {
+            fetch('/chart-data').then(response => response.json())
+                .then((chart_data) => {
+                    const data = new google.visualization.DataTable();
+                    data.addColumn('string', 'Date');
+                    data.addColumn('number', 'Comfirmed Cases');
+                    Object.keys(chart_data).forEach((date) => {
+                        data.addRow([date, chart_data[date]]);
+                    });
+
+                    const options = {
+                        'title': 'Coronavirus Disease (COVID-2019) Globally Comfirmed Cases',
+                        'width': divWidth,
+                        'height': 500
+                    };
+
+                    const chart = new google.visualization.LineChart(
+                        document.getElementById('chart-container'));
+                    chart.draw(data, options);
+                });
+            });
+        },
+        /**
+         * Compute element width
+         */
+        getStyle(el) {
+            if (window.getComputedStyle)
+                return window.getComputedStyle(el);
+            return el.currentStyle;
+        },
+        getWidth(el) {
+            var val = el.offsetWidth, which = ['left', 'right'];
+            if (val == 0)           // display: none;
+                return 0;
+            var style = this.getStyle(el);
+            for (var i = 0; i < which.length; i++) {
+                val -= parseFloat(style["border-"+which[i]+"-width"]) || 0;
+                val -= parseFloat(style["padding-"+which[i]]) || 0;
+            }
+            console.log("getWidth:", el, val);
+            return val;
         }
     },
     mounted () {
         // Load comment message once the document is ready
         this.getComments();
         this.initScroll();
+        this.loadChart();
     }
 });
 
