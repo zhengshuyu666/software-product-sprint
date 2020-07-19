@@ -119,6 +119,16 @@ var vm = new Vue({
             }
             console.log("getWidth:", el, val);
             return val;
+        },
+        /** Creates a map and adds it to the page. */
+        createMap () {
+            const map = new google.maps.Map(
+                document.getElementById('map'),
+                {
+                    center: {lat: 37.422, lng: -122.084}, 
+                    zoom: 16,
+                    height: 500
+                });
         }
     },
     mounted () {
@@ -126,6 +136,7 @@ var vm = new Vue({
         this.getComments();
         this.initScroll();
         this.loadChart();
+        this.createMap();
     }
 });
 
