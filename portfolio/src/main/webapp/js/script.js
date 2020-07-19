@@ -91,7 +91,7 @@ var vm = new Vue({
                     const options = {
                         'title': 'Coronavirus Disease (COVID-2019) Globally Comfirmed Cases',
                         'width': divWidth,
-                        'height': 500
+                        'height': 400
                     };
 
                     const chart = new google.visualization.LineChart(
@@ -119,6 +119,32 @@ var vm = new Vue({
             }
             console.log("getWidth:", el, val);
             return val;
+        },
+        /** Creates a map and adds it to the page. */
+        createMap () {
+            var schoolLatLng = {lat: 39.9, lng: 116.3};
+            var homeLatLng = {lat: 24.45, lng: 118.08};
+            var myLatLng = {
+                lat: (schoolLatLng.lat + homeLatLng.lat) / 2,
+                lng: (schoolLatLng.lng + homeLatLng.lng) / 2
+            };
+            var map = new google.maps.Map(
+                document.getElementById('map'), 
+                {
+                    zoom: 4,
+                    center: myLatLng
+                });
+
+            var schoolMarker = new google.maps.Marker({
+                position: schoolLatLng,
+                map: map,
+                title: 'Peking University'
+            });
+            var homeMarker = new google.maps.Marker({
+                position: homeLatLng,
+                map: map,
+                title: 'My Hometown'
+            });
         }
     },
     mounted () {
@@ -126,6 +152,7 @@ var vm = new Vue({
         this.getComments();
         this.initScroll();
         this.loadChart();
+        this.createMap();
     }
 });
 
