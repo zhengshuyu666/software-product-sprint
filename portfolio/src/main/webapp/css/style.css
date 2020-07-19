@@ -543,7 +543,6 @@ figure.effect-moses:hover img {
 .form-submit {
     width: 100%;
     text-align: center;
-
 }
 
 .margin-comment .form-control {
@@ -573,6 +572,15 @@ figure.effect-moses:hover img {
     text-align: center;
     font-weight: 600;
     font-size: 1.2em;
+}
+
+/***************************************
+               Discovering
+ ***************************************/
+.margin-discovering {
+    width: 100%;
+    margin-top: 100px;
+    overflow: hidden;
 }
 
 /***************************************

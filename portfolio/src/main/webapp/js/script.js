@@ -70,12 +70,40 @@ var vm = new Vue({
                 e.preventDefault();
                 window.scroll({ top: 0, left: 0, behavior: 'smooth' });
             });
-        }
+        },
+        /**
+         * Creates a chart and adds it to the page.
+         */
+        loadChart() {
+            google.charts.load('current', {'packages':['corechart']});
+            google.charts.setOnLoadCallback(function() {
+                const data = new google.visualization.DataTable();
+                data.addColumn('string', 'Animal');
+                data.addColumn('number', 'Count');
+                    data.addRows([
+                      ['Lions', 10],
+                      ['Tigers', 5],
+                      ['Bears', 15]
+                    ]);
+
+                const options = {
+                'title': 'Zoo Animals',
+                'width':500,
+                'height':400
+                };
+
+                const chart = new google.visualization.PieChart(
+                  document.getElementById('chart-container'));
+                chart.draw(data, options);
+            });
+        },
+
     },
     mounted () {
         // Load comment message once the document is ready
         this.getComments();
         this.initScroll();
+        this.loadChart();
     }
 });
 
