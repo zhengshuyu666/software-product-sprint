@@ -150,7 +150,6 @@ h4 {
     font-family: 'Oxygen', sans-serif;
     font-size: 1.1em;
     border-top: 1px solid #dddddd;
-    /*border-bottom: 1px solid #dddddd;*/
     margin-top: 68px;
     margin-right: 8%;
 }
@@ -254,6 +253,7 @@ h4 {
 .margin-about {
     margin-top: 40px;
     width: 100%;
+    overflow: hidden;
 }
 
 .photo-about {
@@ -268,6 +268,7 @@ h4 {
  ***************************************/
 .margin-publication {
     margin-top: 100px;
+    overflow: hidden;
 }
 
 .box-publication {
@@ -302,6 +303,7 @@ h4 {
  ***************************************/
 .margin-project {
     margin-top: 100px;
+    overflow: hidden;
 }
 
 .media, .media-heading {
@@ -333,6 +335,7 @@ h4 {
 
 .margin-hobby {
     margin-top: 100px;
+    overflow: hidden;
 }
 
 .portfolio-items {
@@ -491,13 +494,14 @@ figure.effect-moses:hover img {
  ***************************************/
 .margin-comment {
     margin-top: 100px;
+    overflow: hidden;
 }
 .comment-container {
     color: #898989;
     font-family: 'Oxygen', sans-serif;
     font-size: 1.1em;
     margin-top: 54px;
-    margin-bottom: 72px;
+    width: 100%;
 }
 
 .comment-list{
@@ -557,6 +561,20 @@ figure.effect-moses:hover img {
     color: #fff;
 }
 
+.comment-form {
+    margin-bottom: 40px;
+}
+
+.comment-form form {
+    margin-top: 60px;
+}
+
+.comment-form p {
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.2em;
+}
+
 /***************************************
                 Footer
  ***************************************/
@@ -579,4 +597,8 @@ figure.effect-moses:hover img {
     text-align: center;
 }
 
+.logout {
+    margin-left: 100px;
+    color: #e74c3c;
+}
 

@@ -22,20 +22,21 @@
 
   <body>
     <!-- Start wrapper -->
-    <div class="wrapper">
+    <div class="wrapper" id="app">
       <!-- Start a main column with full width -->
       <div class="main-column col-md-12">
         <div class="brand"> Shuyu Zheng</div>
         <!-- Navigation -->
         <nav class="navbar navbar-default" role="navigation">
           <!-- Collect the nav links, forms, and other content for toggling -->
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <div class="collapse navbar-collapse" id="navbar-collapse">
               <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#publication">Publications</a></li>
-                <li><a href="#project">Projects</a></li>
-                <li><a href="#hobby">Hobbies</a></li>
+                <li class="active"><a href="" id="nav-home">Home</a></li>
+                <li><a href="" id="nav-about">About</a></li>
+                <li><a href="" id="nav-publication">Publications</a></li>
+                <li><a href="" id="nav-project">Projects</a></li>
+                <li><a href="" id="nav-hobby">Hobbies</a></li>
+                <li><a href="" id="nav-comment">Comments</a></li>
               </ul>
           </div>
           <!-- /navbar-collapse -->
@@ -350,35 +351,49 @@
               <div class="hr"></div>
           </div>
           <div class="comment-container col-xs-10 col-sm-10 col-md-10 col-xs-offset-1">
-            <!-- <div style="text-align: center;">Click <a onclick="getComments()">Here</a> to get comments
-            </div> -->
             <div id="comment-list" class="comment-list">
+              <div class="comment-item" v-if="commentList.length > 0" v-for="(item, index) in commentList" :key="index">
+                <div class="row">
+                  <div class="pull-left">
+                    <span class="fa-stack fa-2x">
+                      <i class="fa fa-circle fa-stack-2x color-grey"></i>
+                      <i class="fa fa-user fa-stack-1x fa-inverse"></i>
+                    </span>
+                  </div>
+                  <div class="pull-left">
+                    <p class="comment-name">{{item.userName}}</p>
+                    <p class="comment-time">{{item.currentTime}}</p>
+                  </div>
+                </div>
+                <p class="comment-text">{{item.commentText}}</p>
+              </div>
             </div>
           </div>
-          <form action="/data" method="POST" class="col-xs-8 col-xs-offset-2">
-            <div class="form-group">
-              <label class="form-label col-sm-2" for="form-name">Name</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control" name="form-name" id="form-name" placeholder="Name">
+          <div id="comment-form" class="comment-form col-xs-10 col-sm-10 col-md-10 col-xs-offset-1">
+            <p v-if="!isLogegIn">
+              <a :href="redirectURL">Login to View Comments</a>
+            </p>
+            <form v-else :action="uploadURL" method="POST" class="col-xs-8 col-xs-offset-2">
+              <div class="form-group">
+                <label class="form-label col-sm-2" for="form-comment">Comment</label>
+                  <div class="col-sm-10">
+                    <textarea class="form-control" name="form-comment" id="form-comment" rows="3" placeholder="Write some comments"></textarea>
+                  </div>
+                </div>
+              <div class="form-submit">
+                <button type="submit" class="btn btn-submit">Submit</button>
               </div>
-            </div>
-            <br/><br/>
-            <div class="form-group">
-              <label class="form-label col-sm-2" for="form-comment">Comment</label>
-              <div class="col-sm-10">
-                <textarea class="form-control" name="form-comment" id="form-comment" rows="3" placeholder="Write some comments"></textarea>
-              </div>
-            </div>
-            <div class="form-submit">
-              <button type="submit" class="btn btn-submit">Submit</button>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
         <!-- End Session: Comment -->
 
         <!-- Start footer -->
         <div class="footer col-xs-6 col-sm-6 col-md-6 col-xs-offset-3">
-          <h5><a href="#">Back to Top</a></h5>
+          <h5 id="footer-text">
+            <a href="" id="nav-back">Back to Top</a>
+            <a v-if="isLogegIn" :href="redirectURL" class="logout">Logout</a>
+          </h5>
         </div>
         <!-- End footer -->
 
@@ -390,10 +405,13 @@
     <!-- jQuery -->
     <script type="text/javascript" src="js/jquery.js"></script>
     <!-- Boostrap JS -->
-    <script src="js/bootstrap.min.js"></script>
-
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!-- Smooth scroll JS -->
+    <script type="text/javascript" src="js/smoothscroll.js"></script>
+    <!-- Vue.js -->
+    <script type='text/javascript' src='js/vue.min.js'></script>
     <!-- Main Script -->
-    <script src="js/script.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
 
   </body>
 </html>

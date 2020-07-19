@@ -16,29 +16,29 @@ package com.google.sps.data;
 
 import java.util.Date;
 
-/** Class containing server statistics. */
+/** Class containing user comment. */
 public final class UserComment {
 
-  private final String userName;
-  private final Date currentTime;
-  private final String commentText;
+    private final String userName;
+    private final Date currentTime;
+    private final String commentText;
 
-  public UserComment(String userName, Date currentTime, String commentText) {
-    this.userName = userName;
-    this.currentTime = currentTime;
-    this.commentText = commentText;
-  }
+    public UserComment(String userName, Date currentTime, String commentText) {
+        this.userName = userName;
+        this.currentTime = currentTime;
+        this.commentText = commentText;
+    }
 
-  public String getUserName() {
-    return userName;
-  }
+    public String getUserName() {
+        return userName;
+    }
 
-  public Date getCurrentTime() {
-    return currentTime;
-  }
+    public Date getCurrentTime() {
+        return currentTime;
+    }
 
-  public String getCommentText() {
-    return commentText;
-  }
+    public String getCommentText() {
+        return commentText;
+    }
 
 }
